@@ -19,7 +19,21 @@
             ثبت نام
           </a>
       </div>
-
+      <div class="main-section">
+          <div class="text-container fade-in-right" :class="{'active': isActive}">
+             <div>
+                <h2>
+                    ما به سلامتی شما اهمیت می دهیم
+                </h2>
+                <p>
+                    اکنون سلامت خود را با پزشک متخصص ما، خدمات امکانات کامل و مدرن بررسی کنید
+                </p>
+             </div>
+          </div>
+         <div class="image-container fade-in-left" :class="{'active': isActive}">
+            <img src="@/assets/doctor.png" style="width: 400px; height: 450px;" />
+         </div>
+      </div>
       
     </div>
     
@@ -48,10 +62,9 @@ export default{
       activate(){
           this.isActive = true;
       }
-
-
   }
 }
+
 
 
 </script>
@@ -124,8 +137,46 @@ export default{
   background-color: #0099FF;
 }
 
+.fade-in-left{
+  position: relative;
+  transform: translateX(-500px);
+  opacity: 0;
+  transition: 1s all ease;
+}
+
+.main-section{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  /* border-bottom: 1px rgb(192, 192, 192) solid; */
+}
+.image-container{
+   width: 50%;
+   padding-top: 2%;
+   padding-right: 10%;
+}
+
+.text-container{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.fade-in-right{
+  position: relative;
+  transform: translateX(100%);
+  opacity: 0;
+  transition: 1s all ease;
+}
 
 
+.active {
+  transform: translateX(0);
+  opacity: 1;
+}
 
 
 </style>
