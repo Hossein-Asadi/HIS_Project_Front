@@ -19,24 +19,37 @@
             ثبت نام
           </a>
       </div>
-      <div class="main-section">
-          <div class="text-container fade-in-right" :class="{'active': isActive}">
-             <div>
-                <h2>
-                    ما به سلامتی شما اهمیت می دهیم
-                </h2>
-                <p>
-                    اکنون سلامت خود را با پزشک متخصص ما، خدمات امکانات کامل و مدرن بررسی کنید
-                </p>
-             </div>
-          </div>
-         <div class="image-container fade-in-left" :class="{'active': isActive}">
-            <img src="@/assets/doctor.png" style="width: 400px; height: 450px;" />
-         </div>
-      </div>
-      
     </div>
-    
+    <div class="main-section">
+        <div class="text-container fade-in-right" :class="{'active': isActive}">
+           <div>
+              <h2>
+                  ما به سلامتی شما اهمیت می دهیم
+              </h2>
+              <p>
+                  اکنون سلامت خود را با پزشک متخصص ما، خدمات امکانات کامل و مدرن بررسی کنید
+              </p>
+           </div>
+        </div>
+       <div class="image-container fade-in-left" :class="{'active': isActive}">
+          <img src="@/assets/doctor.png" style="width: 400px; height: 450px;" />
+       </div>
+    </div>
+
+    <div class="card-container">
+        <div>
+          <h1>24/7</h1>
+          <p>خدمات آنلاین</p>
+        </div>
+        <div>
+          <h1>+100</h1>
+          <p>پزشک متخصص</p>
+        </div>
+        <div>
+          <h1>+10,000</h1>
+          <p>بیمار ترخیص شده</p>
+        </div>
+    </div>
   </div>
   
 </template>
@@ -61,9 +74,31 @@ export default{
       },
       activate(){
           this.isActive = true;
+      // console.log(this.isActive);
       }
+
+
   }
 }
+
+  // console.log(this.isActive);
+  //   console.log(1);
+  //   let imageFade = document.querySelectorAll(".fade-in-left");
+  //   let textFade = document.querySelectorAll(".fade-in-right");
+
+  //   let windowHeight = window.innerHeight;
+  //   let elementTop = imageFade.getBoundingClientRect().top;
+  //   let elementVisible = 150;
+
+  //   imageFade.classList.add("active");
+  //   imageFade.classList.add("complete-fade");
+  //   textFade.classList.add("active");
+  //   textFade.classList.add("complete-fade");
+  //   if(elementTop < windowHeight - elementVisible){
+  //   }else if(!imageFade.classList.contains("complete-fade")){
+  //     textFade.classList.remove("active");
+  //     imageFade.classList.remove("active");
+  //   }
 
 
 
@@ -176,6 +211,23 @@ export default{
 .active {
   transform: translateX(0);
   opacity: 1;
+}
+
+.card-container{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding-top: 50px;
+}
+
+.card-container > div{
+  background-color: #ccd5dc;
+  width: 20%;
+  height: 100px;
+  text-align: center;
+  padding-top: 15px;
+  border-radius: 10px;
 }
 
 
