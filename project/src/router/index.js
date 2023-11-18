@@ -1,14 +1,14 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import viewTest from '../views/viewTest.vue'
+import LandingPage from '../views/LandingPage.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'viewTest',
-    component: viewTest
+    name: 'LandingPage',
+    component: LandingPage
   },
 ]
 
