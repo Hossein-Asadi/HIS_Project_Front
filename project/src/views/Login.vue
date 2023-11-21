@@ -4,11 +4,11 @@
     <img src="@/assets/hospital1.jpg" style="width: 800px; height: 600px; position: absolute; left: 300px; top: 180px; border-radius: 25px 0px 0px 25px;"/>
     <div style="background-color: #bbb; width: 500px; height: 600px; position: absolute; right: 305px; top: 180px; border-radius: 0px 25px 25px 0;">
       <div class="item-group-center" style="margin-top: 200px;">
-        <v-text-field v-model="username" outlined class="shrink" style="width: 300px;" background-color="#acaeab" dense color="#000"></v-text-field>
+        <v-text-field v-model="username" outlined class="shrink" style="width: 300px;" :background-color="textFieldBackgroundColor" dense color="#000"></v-text-field>
         <p style="margin-top: 7px; margin-left: 5px;">:نام کاربری</p>
       </div>
       <div class="item-group-center">
-        <v-text-field v-model="password" outlined class="shrink" style="width: 300px;" background-color="#acaeab" dense color="#000"></v-text-field>
+        <v-text-field v-model="password" outlined class="shrink" style="width: 300px;" :background-color="textFieldBackgroundColor" dense color="#000"></v-text-field>
         <p style="margin-top: 7px; margin-left: 9px; margin-right: 5px;">:رمز عبور</p>
       </div>
       <div class="item-group-center">
@@ -28,6 +28,7 @@ export default{
     return{
       username: null,
       password: null,
+      textFieldBackgroundColor: '#acaeab',
     }
   },
   methods: {
