@@ -15,4 +15,22 @@ export default{
 }
 </script>
 
-<style></style>
+<style lang="scss">
+@font-face {
+  font-family: Shabnam;
+  src: url("assets/fonts/Shabnam-FD.eot");
+  src: url("assets/fonts/Shabnam-FD.eot?#iefix") format("embedded-opentype"),
+    url("assets/fonts/Shabnam-FD.woff") format("woff"),
+    url("assets/fonts/Shabnam-FD.ttf") format("truetype");
+  font-weight: normal;
+}
+* {
+  font-family: "Shabnam";
+}
+.my-custom-class-name {
+  font-family: "Shabnam" !important;
+}
+.my-custom-class-name * {
+  font-family: "Shabnam" !important;
+}
+</style>
