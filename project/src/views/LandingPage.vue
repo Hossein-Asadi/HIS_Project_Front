@@ -12,10 +12,10 @@
       </div>
 
       <div class="login-signup">
-          <a class="login">
+          <a class="login" @click="login">
             ورود
           </a>
-          <a class="signup">
+          <a class="signup" @click="signup">
             ثبت نام
           </a>
       </div>
@@ -69,15 +69,19 @@ export default{
     }
   },
   methods: {
-      addActiveClass() {
-          setTimeout(this.activate,100);
-      },
-      activate(){
-          this.isActive = true;
-      // console.log(this.isActive);
-      }
-
-
+    addActiveClass() {
+      setTimeout(this.activate,100);
+    },
+    activate(){
+      this.isActive = true;
+    // console.log(this.isActive);
+    },
+    signup() {
+      this.$router.push({ path: '/signup' })
+    },
+    login() {
+      this.$router.push({ path: '/login' })
+    },
   }
 }
 
