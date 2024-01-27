@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid style="background-color: #00356b; height: 100%; width: 100%; position: fixed;">
+  <v-container fluid style="background-color: #6a9aed; height: 100%; width: 100%; position: fixed;">
     <particles/>
     <img src="@/assets/hospital1.jpg" style="width: 600px; height: 450px; position: absolute; left: 210px; top: 140px; border-radius: 25px 0px 0px 25px;"/>
     <v-icon size="40" style="position: absolute; left: 215px; top: 145px;" @click="mainPage">mdi-exit-to-app</v-icon>

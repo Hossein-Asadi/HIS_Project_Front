@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid style="background-color: #00356b; height: 100%; width: 100%; position: fixed;">
+  <v-container fluid style="background-color: #6a9aed; height: 100%; width: 100%; position: fixed;">
     <particles/>
     <img src="@/assets/hospital1.jpg" style="width: 650px; height: 550px; position: absolute; left: 110px; top: 100px; border-radius: 25px 0px 0px 25px;"/>
     <v-icon size="40" style="position: absolute; left: 115px; top: 105px;" @click="mainPage">mdi-exit-to-app</v-icon>
@@ -42,7 +42,7 @@
         <p style="margin-top: 7px; margin-left: 5px;">:تاریخ تولد</p>
       </div>
 
-      <div class="item-group-center" style="margin-top: 10px;">
+      <div class="item-group-center" style="padding-top: 10px;">
         <v-btn @click="signup" width="100px" class="loginBtn">ثبت نام</v-btn>
       </div>
 
@@ -127,6 +127,7 @@ export default{
 .item-group-center{
   display: flex;
   justify-content: center;
+  margin-top: -5px;
 }
 .loginBtn {
   float: right;
@@ -134,4 +135,5 @@ export default{
   background-color: rgba(40, 40, 40, 0.5) !important;
   color: #fff;
 }
+
 </style>

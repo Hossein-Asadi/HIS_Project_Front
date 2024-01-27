@@ -2,7 +2,7 @@
   <v-app>
     <div class="item-group-center" style="width: 50%;margin-left: 25%;">
       <v-select label="... انتخاب پزشک" dense outlined reverse :items="doctors" v-model="selectedDoctor" item-text="name" return-object></v-select>
-      <v-select label="... انتخاب درمانگاه" dense outlined reverse :items="clinics" v-model="selectedClinic" item-text="text" item-value="value"></v-select>
+      <v-select label="... انتخاب بخش" dense outlined reverse :items="clinics" v-model="selectedClinic" item-text="text" item-value="value"></v-select>
     </div>
     
     <v-radio-group v-model="selectedTime" style="margin: 0px;">
