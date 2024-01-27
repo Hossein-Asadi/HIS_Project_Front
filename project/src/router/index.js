@@ -1,11 +1,18 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import LandingPage from '../views/LandingPage.vue'
 import Login from '@/views/Login.vue'
-import LandingPage from '@/views/LandingPage.vue'
+import SignUp from '@/views/SignUp.vue'
+import Dashboard from '@/views/Dashboard.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path: '/',
+    name: 'LandingPage',
+    component: LandingPage
+  },
   {
     path: '/login',
     name: 'Login',
@@ -14,6 +21,16 @@ const routes = [
     path: '/',
     name: 'LandingPage',
     component: LandingPage
+  },
+  {
+    path: '/signup',
+    name: 'SignUp',
+    component: SignUp
+  },
+  {
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: Dashboard
   },
 ]
 

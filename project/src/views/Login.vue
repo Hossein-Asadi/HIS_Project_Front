@@ -1,24 +1,30 @@
 <template>
   <v-container fluid style="background-color: #00356b; height: 100%; width: 100%; position: fixed;">
     <particles/>
-    <img src="@/assets/hospital1.jpg" style="width: 800px; height: 600px; position: absolute; left: 300px; top: 180px; border-radius: 25px 0px 0px 25px;"/>
-    <div style="background-color: #bbb; width: 500px; height: 600px; position: absolute; right: 305px; top: 180px; border-radius: 0px 25px 25px 0;">
-      <div class="item-group-center" style="margin-top: 200px;">
-        <v-text-field v-model="username" outlined class="shrink" style="width: 300px;" background-color="#acaeab" dense color="#000"></v-text-field>
+    <img src="@/assets/hospital1.jpg" style="width: 600px; height: 450px; position: absolute; left: 210px; top: 140px; border-radius: 25px 0px 0px 25px;"/>
+    <v-icon size="40" style="position: absolute; left: 215px; top: 145px;" @click="mainPage">mdi-exit-to-app</v-icon>
+    <div style="background-color: #bbb; width: 500px; height: 450px; position: absolute; right: 210px; top: 140px; border-radius: 0px 25px 25px 0;">
+      <div class="item-group-center" style="margin-top: 150px;">
+        <v-text-field v-model="username" outlined class="shrink" style="width: 300px;" :background-color="textFieldBackgroundColor" dense color="#000"></v-text-field>
         <p style="margin-top: 7px; margin-left: 5px;">:نام کاربری</p>
       </div>
       <div class="item-group-center">
-        <v-text-field v-model="password" outlined class="shrink" style="width: 300px;" background-color="#acaeab" dense color="#000"></v-text-field>
+        <v-text-field v-model="password" outlined class="shrink" style="width: 300px;" :background-color="textFieldBackgroundColor" dense color="#000"></v-text-field>
         <p style="margin-top: 7px; margin-left: 9px; margin-right: 5px;">:رمز عبور</p>
       </div>
       <div class="item-group-center">
         <v-btn @click="login" width="100px" class="loginBtn">ورود</v-btn>
+      </div>
+      <div class="item-group-center" style="margin-top: 20px;">
+        <v-alert type="error" :value="!valid" dense width="280px" class="item-group-center">{{ errorMessage }}</v-alert>
       </div>
     </div>
   </v-container>
 </template>
 
 <script>
+import api from '@/api'
+
 export default{
   name: "login",
   components: {
@@ -28,70 +34,48 @@ export default{
     return{
       username: null,
       password: null,
+      textFieldBackgroundColor: '#acaeab',
+      errorMessage: null,
+      valid: true
     }
+  },
+  async mounted() {
+    let token = JSON.parse(localStorage.getItem('token'))
+
+    await api.auth.tokenVerify({token: token})
+    .then((res) => {
+      this.$router.push({ path: '/dashboard' })
+    })
+    .catch((error) => {
+      // console.log(error);
+    })
   },
   methods: {
     login() {
-      console.log('######',this.username,this.password);
+      api.auth.djangologin(this.username, this.password)
+      .then(({data}) => {
+        console.log(data.access);
+        if (data.access == undefined) {
+          this.errorMessage = data
+          this.valid = false
+        }
+        else {
+          localStorage.setItem('token', JSON.stringify(data.access))
+          this.$router.push({ path: '/dashboard' })
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+    },
+    mainPage() {
+      this.$router.push({ path: '/' })
     }
   }
 }
 </script>
 
 <style scoped>
-.background-style {
-  padding-top: 0px;
-  /* background-image: url("../assets/images/LoginBack2.jpg"); */
-  background-position: bottom !important;
-  /* background-color: #373e46 !important; */
-  background-image: linear-gradient(
-    0deg,
-    rgba(118, 104, 91, 0.9) 0%,
-    rgba(144, 127, 112, 0.9) 50%,
-    rgba(118, 104, 91, 0.9) 100%
-  );
-  color: #aaa;
-  position: fixed;
-  height: 100%;
-  width: 100%;
-}
-.loginContainer {
-  background-color: #fff;
-  padding: 0;
-  margin-top: 5%;
-  position: relative;
-}
-.section-1 {
-  position: relative;
-  padding: 0;
-  z-index: 1;
-  /* background-image: url("../assets/images/loginSection-1.jpg"); */
-}
-.section-1 img {
-  border-radius: 0px 25px 25px 0;
-  width: 100%;
-  height: 100%;
-}
-.section-2 {
-  position: relative;
-  padding: 0;
-  /* background-image: url("../assets/images/loginSection-2.jpg"); */
-  background-size: cover;
-  z-index: 1;
-  margin-left: 200px;
-}
-.section-2 img {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 25px 0px 0px 25px;
-}
-#particles-js {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: #00356b;
-}
 .item-group-center{
   display: flex;
   justify-content: center;
