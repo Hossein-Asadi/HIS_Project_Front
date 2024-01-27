@@ -2,7 +2,7 @@
   <div class="landing-container" dir="rtl">
     <div class="navbar-container">
       <div class="logo">
-          Logo
+          <img class="logo-img" src="@/assets/Logo.png" />
       </div>
   
       <div class="info">
@@ -24,10 +24,10 @@
         <div class="text-container fade-in-right" :class="{'active': isActive}">
            <div>
               <h2>
-                  ما به سلامتی شما اهمیت می دهیم
+                سلامت شما، تخصص ما              
               </h2>
               <p>
-                  اکنون سلامت خود را با پزشک متخصص ما، خدمات امکانات کامل و مدرن بررسی کنید
+                ما به شما کمک می کنیم مراقب کسانی باشید که بیشترین اهمیت را دارند.
               </p>
            </div>
         </div>
@@ -126,7 +126,13 @@ export default{
 .logo{
   width: 30%;
   padding-right: 40px;
-  padding-top: 20px;
+  padding-top: 5px;
+  height: 100px;
+}
+
+.logo-img{
+  height: 75px;
+  width: 105px;
 }
 
 .info{
