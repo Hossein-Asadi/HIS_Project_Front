@@ -14,6 +14,7 @@ import doctorList from '@/components/doctorList.vue'
 import onlineReservation from '@/components/onlineReservation.vue'
 import patientsList from '@/components/patientsList.vue'
 
+
 export default{
   name: 'dashboard',
   components: {navbar, doctorList, onlineReservation,patientsList},
@@ -50,7 +51,7 @@ export default{
       this.onlineReservationValid = false
       this.doctorListValid = false
       this.patientsListValid = true
-    }
+    },
   }
 }
 </script>

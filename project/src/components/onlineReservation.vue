@@ -1,8 +1,9 @@
 <template>
   <v-app>
+    <div class="info-label">ابتدا بخش مورد نظر و سپس نام پزشک مورد نظر خود را انتخاب فرمایید</div>
     <div class="item-group-center" style="width: 50%;margin-left: 25%;">
-      <v-select label="... انتخاب پزشک" dense outlined reverse :items="doctors" v-model="selectedDoctor" item-text="name" return-object></v-select>
-      <v-select label="... انتخاب بخش" dense outlined reverse :items="clinics" v-model="selectedClinic" item-text="text" item-value="value"></v-select>
+      <v-select label=" انتخاب پزشک" dense outlined reverse :items="doctors" v-model="selectedDoctor" item-text="name" return-object></v-select>
+      <v-select label=" انتخاب بخش" dense outlined reverse :items="clinics" v-model="selectedClinic" item-text="text" item-value="value"></v-select>
     </div>
     
     <v-radio-group v-model="selectedTime" style="margin: 0px;">
@@ -15,8 +16,9 @@
         </div>
       </div>
     </v-radio-group>
-
-    <v-btn @click="confirm" class="confirmButton mt-5">تایید</v-btn>
+    <div style="text-align: center;">
+      <v-btn @click="confirm" class="confirmButton mt-5">تایید</v-btn>
+    </div>
 
     <div class="item-group-center" style="margin-top: 20px;">
       <v-alert type="success" :value="valid" dense width="280px" class="item-group-center">نوبت با موفقیت رزرو شد</v-alert>
@@ -153,16 +155,24 @@ export default{
 </script>
 
 <style>
+.info-label{
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  background-color: white !important;
+}
 .item-group-center{
   display: flex;
   justify-content: center;
 }
 .v-select{
   width: 200px;
+  margin-left: 20px !important;
+  margin-right: 20px !important;
 }
+
 .confirmButton{
   width: 100px;
-  margin-left: 47%;
   background-color: green !important;
   color: white !important;
 }
