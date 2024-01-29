@@ -1,6 +1,7 @@
 <template>
   <div class="navbar-container">
     <div class="navbar-item">
+      <a style="height: 20px; width: 80px; margin-left: 40px;" @click="pharmacy"> داروخانه </a>
       <a style="height: 20px; width: 80px; margin-left: 40px;" @click="patientsList">لیست بیماران </a>
       <a style="height: 20px; width: 80px;" @click="doctorList">تقویم پزشکان </a>
       <a style="height: 20px; width: 80px; margin-right: 40px;" @click="onlineReservation">نوبت دهی آنلاین</a>
@@ -34,6 +35,8 @@ export default{
       this.$emit('onlineReservation')
     },patientsList() {
       this.$emit('patientsList')
+    },pharmacy() {
+      this.$emit('pharmacy')
     },
     userInfoToggle() {
       if(this.userInfoOpen){
