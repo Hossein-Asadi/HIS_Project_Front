@@ -25,13 +25,13 @@
 <script>
 import api from '@/api'
 
-export default{
+export default {
   name: "login",
   components: {
     particles: () => import("@/components/particles"),
   },
   data() {
-    return{
+    return {
       username: null,
       password: null,
       textFieldBackgroundColor: '#acaeab',
@@ -54,13 +54,14 @@ export default{
     login() {
       api.auth.djangologin(this.username, this.password)
       .then(({data}) => {
-        console.log(data.access);
-        if (data.access == undefined) {
+        if (data.token == undefined) {
           this.errorMessage = data
           this.valid = false
         }
         else {
-          localStorage.setItem('token', JSON.stringify(data.access))
+          localStorage.setItem('token', JSON.stringify(data.token.access))
+          localStorage.setItem('role', JSON.stringify(data.role))
+          localStorage.setItem('userId', JSON.stringify(data.userId))
           this.$router.push({ path: '/dashboard' })
         }
       })

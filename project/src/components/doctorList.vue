@@ -7,10 +7,10 @@
 <script>
 import api from '@/api';
 
-export default{
+export default {
   name: 'doctorList',
   data() {
-    return{
+    return {
       experties: {
         'orthopedics': 'ارتوپدی',
         'digestion': 'گوارش',

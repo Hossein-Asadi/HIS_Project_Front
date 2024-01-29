@@ -3,7 +3,7 @@
     <navbar @doctorList="doctorList" @onlineReservation="onlineReservation" @patientsList="patientsList"></navbar>
     <doctorList v-if="doctorListValid"></doctorList>
     <onlineReservation v-if="onlineReservationValid" @main="onlineReservationValid = false"></onlineReservation>
-    <patientsList v-if="patientsListValid" @main="patientsListValid = false"></patientsList>
+    <patientsList v-if="patientsListValid"></patientsList>
   </div>
 </template>
 
@@ -15,11 +15,11 @@ import onlineReservation from '@/components/onlineReservation.vue'
 import patientsList from '@/components/patientsList.vue'
 
 
-export default{
+export default {
   name: 'dashboard',
   components: {navbar, doctorList, onlineReservation,patientsList},
   data() {
-    return{
+    return {
       doctorListValid: false,
       onlineReservationValid: false,
       patientsListValid: false,

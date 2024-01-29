@@ -55,26 +55,22 @@
 </template>
 
 <script>
-export default{
+export default {
   name: "landingPage",
-  components: {
-    
-  },
-  mounted() {
-  this.addActiveClass();
-  },
   data() {
-    return{
+    return {
       isActive: false,
     }
+  },
+  mounted() {
+    this.addActiveClass();
   },
   methods: {
     addActiveClass() {
       setTimeout(this.activate,100);
     },
-    activate(){
+    activate() {
       this.isActive = true;
-    // console.log(this.isActive);
     },
     signup() {
       this.$router.push({ path: '/signup' })
@@ -84,28 +80,6 @@ export default{
     },
   }
 }
-
-  // console.log(this.isActive);
-  //   console.log(1);
-  //   let imageFade = document.querySelectorAll(".fade-in-left");
-  //   let textFade = document.querySelectorAll(".fade-in-right");
-
-  //   let windowHeight = window.innerHeight;
-  //   let elementTop = imageFade.getBoundingClientRect().top;
-  //   let elementVisible = 150;
-
-  //   imageFade.classList.add("active");
-  //   imageFade.classList.add("complete-fade");
-  //   textFade.classList.add("active");
-  //   textFade.classList.add("complete-fade");
-  //   if(elementTop < windowHeight - elementVisible){
-  //   }else if(!imageFade.classList.contains("complete-fade")){
-  //     textFade.classList.remove("active");
-  //     imageFade.classList.remove("active");
-  //   }
-
-
-
 </script>
 
 <style scoped>
@@ -126,7 +100,7 @@ export default{
 .logo{
   width: 30%;
   padding-right: 40px;
-  padding-top: 5px;
+  /* padding-top: 5px; */
   height: 100px;
 }
 
@@ -141,6 +115,7 @@ export default{
   padding-top: 20px;
   direction: ltr;
   cursor: pointer;
+  color: black;
 }
 
 .about-us{
@@ -163,6 +138,7 @@ export default{
   border-radius: 5px;
   width: 80px;
   margin-top: 10px;
+  color: black;
 }
 
 .signup{

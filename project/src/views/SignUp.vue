@@ -57,14 +57,14 @@
 import VuePersianDatetimePicker from 'vue-persian-datetime-picker';
 import api from '@/api'
 
-export default{
+export default {
   name: "login",
   components: {
     particles: () => import("@/components/particles"),
     datePicker: VuePersianDatetimePicker,
   },
   data() {
-    return{
+    return {
       username: null,
       password: null,
       textFieldBackgroundColor: '#acaeab',

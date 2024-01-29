@@ -68,5 +68,19 @@ export default{
         data: data
       })
     }
+  },
+  getUserInfo(userId) {
+    return axios({
+      method: 'get',
+      url: `${base_url}/api/userinfo/`,
+      params: {id: userId}
+    })
+  },
+  changeUserInfo(data) {
+    return axios({
+      method: 'post',
+      url: `${base_url}/api/userinfo/`,
+      data: data
+    })
   }
 }
