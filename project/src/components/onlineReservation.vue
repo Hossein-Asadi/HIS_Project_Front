@@ -29,10 +29,10 @@
 <script>
 import api from '@/api'
 
-export default{
+export default {
   name: 'onlineReservation',
   data() {
-    return{
+    return {
       expertise: {
         'orthopedics': 'ارتوپدی',
         'digestion': 'گوارش',

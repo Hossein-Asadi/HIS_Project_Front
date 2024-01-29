@@ -1,17 +1,16 @@
 <template>
   <div class="navbar-container">
     <div class="navbar-item">
-      <a style="height: 20px; width: 80px; margin-left: 40px;" @click="pharmacy"> داروخانه </a>
-      <a style="height: 20px; width: 80px; margin-left: 40px;" @click="patientsList">لیست بیماران </a>
-      <a style="height: 20px; width: 80px;" @click="doctorList">تقویم پزشکان </a>
-      <a style="height: 20px; width: 80px; margin-right: 40px;" @click="onlineReservation">نوبت دهی آنلاین</a>
+      <a v-if="userRole == 'doctor'" style="height: 20px; width: 80px; margin-left: 40px;" @click="patientsList">لیست بیماران </a>
+      <a v-if="userRole == 'patient'" style="height: 20px; width: 80px;" @click="doctorList">تقویم پزشکان </a>
+      <a v-if="userRole == 'patient'" style="height: 20px; width: 80px; margin-right: 40px;" @click="onlineReservation">نوبت دهی آنلاین</a>
     </div>
     <div class="info-item">
       <a class="user-info" @click="userInfoToggle">
           مشخصات
       </a>
       <div class="user-info-box" :style="{ display: userInfoOpen ? 'block' : 'none' }" >
-          <profile name="حسین اسدی" national-number="012345678" gender="مرد" username="hossein" password="123456"/>
+        <profile @changeUserInfo="changeUserInfo" :name=userFullName :national-number=userInfo.national_number :gender=userInfo.sex :username=userInfo.username :password=userInfo.password :birthdate=userInfo.birthdate :userInfo=userInfo></profile>
       </div>
     </div>
   </div>
@@ -19,12 +18,27 @@
 
 <script>
 import profile from '@/components/profile.vue'
-export default{
+import api from '@/api'
+
+export default {
   name: 'navbar',
   components: {profile},
   data() {
-    return{
+    return {
       userInfoOpen: false,
+      userRole: '',
+      userInfo: null,
+    }
+  },
+  async created() {
+    this.userRole = JSON.parse(localStorage.getItem('role'))
+    this.changeUserInfo()
+  },
+  computed: {
+    userFullName() {
+      if (this.userInfo != null)
+        return this.userInfo.first_name + ' ' + this.userInfo.last_name
+      return ''  
     }
   },
   methods: {
@@ -33,19 +47,31 @@ export default{
     },
     onlineReservation() {
       this.$emit('onlineReservation')
-    },patientsList() {
+    },
+    patientsList() {
       this.$emit('patientsList')
     },pharmacy() {
       this.$emit('pharmacy')
     },
     userInfoToggle() {
-      if(this.userInfoOpen){
+      if (this.userInfoOpen) {
         this.userInfoOpen = false;
-      }else{
+      }
+      else {
         this.userInfoOpen = true;
       }
-      console.log(this.userInfoOpen);
     },
+    async changeUserInfo() {
+      let userId = JSON.parse(localStorage.getItem('userId'))
+
+      await api.getUserInfo(userId)
+      .then(({data}) => {
+        this.userInfo = data
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+    }
   }
 }
 </script>

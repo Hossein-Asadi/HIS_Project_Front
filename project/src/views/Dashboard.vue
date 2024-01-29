@@ -3,8 +3,8 @@
     <navbar @doctorList="doctorList" @onlineReservation="onlineReservation" @patientsList="patientsList" @pharmacy="pharmacy"></navbar>
     <doctorList v-if="doctorListValid"></doctorList>
     <onlineReservation v-if="onlineReservationValid" @main="onlineReservationValid = false"></onlineReservation>
-    <patientsList v-if="patientsListValid" @main="patientsListValid = false"></patientsList>
     <pharmacy v-if="pharmacyValid" @main="pharmacyValid = false"></pharmacy>
+    <patientsList v-if="patientsListValid"></patientsList>
   </div>
 </template>
 
@@ -17,11 +17,11 @@ import patientsList from '@/components/patientsList.vue'
 import pharmacy from '@/components/pharmacy.vue'
 
 
-export default{
+export default {
   name: 'dashboard',
   components: {navbar, doctorList, onlineReservation,patientsList,pharmacy},
   data() {
-    return{
+    return {
       doctorListValid: false,
       onlineReservationValid: false,
       patientsListValid: false,
