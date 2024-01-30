@@ -113,7 +113,9 @@ export default {
       })
     },
     async confirm() {
-      await api.calender.setAppointment({id: this.selectedDoctor.id, time: this.selectedTime})
+      let userId = JSON.parse(localStorage.getItem("userId"));
+
+      await api.calender.setAppointment({id: this.selectedDoctor.id, time: this.selectedTime, patientId: userId})
       .then(({data}) => {
         this.doctorTimes = []
         let dayTmp = []

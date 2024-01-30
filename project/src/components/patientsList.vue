@@ -33,29 +33,27 @@
 
 <script>
 import patientInfo from "./patientInfo.vue";
+import api from '@/api'
 
 export default {
   name: "patientsList",
   components: { patientInfo },
   data() {
     return {
-      patients: [
-        { name: "چهارشنبه", age: "4", visitTime: "0-8:15-8:30" },
-        { name: "چهارشنبه", age: "4", visitTime: "2-8:15-8:30" },
-        { name: "چهارشنبه", age: "4", visitTime: "3-8:15-8:30" },
-        { name: "چهارشنبه", age: "4", visitTime: "4-8:15-8:30" },
-        { name: "چهارشنبه", age: "4", visitTime: "0-8:15-8:30" },
-        { name: "چهارشنبه", age: "4", visitTime: "1-8:15-8:30" },
-        { name: "چهارشنبه", age: "4", visitTime: "5-8:15-8:30" },
-        { name: "چهارشنبه", age: "4", visitTime: "6-8:15-8:30" },
-        { name: "چهارشنبه", age: "4", visitTime: "0-8:15-8:30" },
-        { name: "چهارشنبه", age: "4", visitTime: "1-8:15-8:30" },
-        { name: "چهارشنبه", age: "4", visitTime: "6-8:15-8:30" },
-        { name: "چهارشنبه", age: "4", visitTime: "6-8:15-8:30" },
-        { name: "چهارشنبه", age: "4", visitTime: "5-8:15-8:30" },
-      ],
+      patients: [],
       selectedOption: 0,
     };
+  },
+  async created() {
+    let userId = JSON.parse(localStorage.getItem("userId"));
+
+    await api.calender.getPatientList(userId)
+    .then(({data}) => {
+      this.patients = data
+    })
+    .catch((error) => {
+      console.log(error);
+    })
   },
   computed: {
     filteredPatients() {

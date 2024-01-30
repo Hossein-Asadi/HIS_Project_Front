@@ -2,7 +2,13 @@
   <div class="navbar-container">
     <div class="navbar-item">
       <a
-        v-if="userRole == 'patient'"
+        v-if="userRole == 'doctor'"
+        style="height: 20px; width: 80px; margin-left: 80px"
+        @click="pharmacy"
+        >داروخانه
+      </a>
+      <a
+        v-if="userRole == 'doctor'"
         style="height: 20px; width: 80px; margin-left: 40px"
         @click="patientsList"
         >لیست بیماران
@@ -17,8 +23,8 @@
         v-if="userRole == 'patient'"
         style="height: 20px; width: 80px; margin-right: 40px"
         @click="onlineReservation"
-        >نوبت دهی آنلاین</a
-      >
+        >نوبت دهی آنلاین
+      </a>
     </div>
     <div class="info-item">
       <a class="user-info" @click="userInfoToggle"> مشخصات </a>
