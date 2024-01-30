@@ -76,6 +76,28 @@ export default{
       })
     }
   },
+  pharmacy: {
+    getAllMedicine() {
+      return axios({
+        method: 'get',
+        url: `${base_url}/api/pharmacy/`,
+      })
+    },
+    addNewMedicine(data) {
+      return axios({
+        method: 'post',
+        url: `${base_url}/api/pharmacy/medicine/`,
+        data: data
+      })
+    },
+    addMedicineAmount(data) {
+      return axios({
+        method: 'post',
+        url: `${base_url}/api/pharmacy/amount/`,
+        data: data
+      })
+    }
+  },
   getUserInfo(userId) {
     return axios({
       method: 'get',

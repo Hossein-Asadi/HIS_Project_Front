@@ -1,4 +1,5 @@
 <template>
+    <v-app>
     <div dir="rtl" class="box-layout">
         <div class="change-box-layout">
             <div class="change-box">
@@ -10,69 +11,115 @@
                     <div class="item-group-center" style="margin-top: 20px; width: 50%;">
                         <v-text-field type="number" v-model="newMedicineFormData.dose" reverse underlined label="دوز دارو" placeholder="دوز دارو..." class="shrink form-input" style="width: 100px; margin-left: 15px;" :background-color="textFieldBackgroundColor" color="#000"></v-text-field>
                     </div>
+                    <div class="item-group-center" style="margin-top: 20px; width: 50%;">
+                        <v-select v-model="newMedicineFormData.type" reverse underlined label="شکل دارو" placeholder="شکل دارو..." class="shrink form-input" style="width: 100px; margin-left: 15px;" :background-color="textFieldBackgroundColor" color="#000" :items="medicineTypes"></v-select>
+                    </div>
+                    <div class="item-group-center" style="margin-top: 20px; width: 50%;">
+                      <datePicker
+                        v-model="newMedicineFormData.expireDate"
+                        placeholder="تاریخ انقضا دارو"
+                        :autoSubmit="true"
+                        :popover="true"
+                        :clearable="true"
+                        color="#607D8B"
+                      ></datePicker>
+                    </div>
                 </div>
                 <div class="submit-box">
-                    <v-btn @click="signup" width="100px" class="loginBtn">ثبت نام</v-btn>
+                    <v-btn @click="addMedicine" width="100px" class="loginBtn">تایید</v-btn>
                 </div>
             </div>
             <div class="change-box">
                 <h2>افزودن تعداد دارو</h2>
                 <div style="display: flex; width: 100%; justify-content: start;">
                     <div class="item-group-center" style="margin-top: 20px; width: 45%;">
-                        <v-autocomplete reverse v-model="addMedicineFormData.name" label="نام دارو    " placeholder="نام دارو..." required class="shrink form-input" style="width: 150px; margin-right: 0 !important;" :background-color="textFieldBackgroundColor" color="#000"></v-autocomplete>
-                    </div>
-                    <div class="item-group-center" style="margin-top: 20px; width: 30%;">
-                        <v-text-field type="number" v-model="addMedicineFormData.dose" reverse underlined label="دوز دارو" placeholder="دوز دارو..." class="shrink form-input" style="width: 100px; margin-left: 15px;" :background-color="textFieldBackgroundColor" color="#000"></v-text-field>
+                        <v-select reverse v-model="addMedicineFormData.name" label="نام دارو    " placeholder="نام دارو..." required class="shrink form-input" style="width: 150px; margin-right: 0 !important;" :background-color="textFieldBackgroundColor" color="#000" :items="medicines" item-text="name" item-value="name"></v-select>
                     </div>
                     <div class="item-group-center" style="margin-top: 20px; width: 25%;">
                         <v-text-field type="number" v-model="addMedicineFormData.count" reverse underlined label="تعداد دارو" placeholder="تعداد دارو..." class="shrink form-input" style="width: 100px; margin-left: 15px;" :background-color="textFieldBackgroundColor" color="#000"></v-text-field>
                     </div>
                 </div>
                 <div class="submit-box">
-                    <v-btn @click="signup" width="100px" class="loginBtn">ثبت نام</v-btn>
+                    <v-btn @click="addAmount" width="100px" class="loginBtn">تایید</v-btn>
                 </div>
             </div>
        </div> 
        <div class="list-layout">
-         <medicine name="آزیترومایسین" dose="100" remain-number="2"/>
-         <medicine name="آزیترومایسین" dose="100" remain-number="2"/>
-         <medicine name="آزیترومایسین" dose="100" remain-number="2"/>
-         <medicine name="آزیترومایسین" dose="100" remain-number="2"/>
-         <medicine name="آزیترومایسین" dose="100" remain-number="2"/>
-         <medicine name="آزیترومایسین" dose="100" remain-number="2"/>
-         <medicine name="آزیترومایسین" dose="100" remain-number="2"/>
-         <medicine name="آزیترومایسین" dose="100" remain-number="2"/>
+         <medicine v-for="med in medicines" :name="med.name" :dose="med.dose" :remain-number="med.amount" :expiredDate="med.expire_date" :type="med.type"></medicine>
        </div>
     </div>
+</v-app>
 </template>
   
 <script>
 import medicine from './medicine.vue';
-  export default{
-    name: "pharmacy",
-    components: {
-      medicine
-    },
-    mounted() {
-    
-    },
-    data() {
-      return{
-        textFieldBackgroundColor: '#ffffff',
-        newMedicineFormData: {
-            name: null,
-            dose: null,
-        },
-        addMedicineFormData: {
-            name: null,
-            dose: null,
-            count: null,
-        },
+import VuePersianDatetimePicker from "vue-persian-datetime-picker";
+import api from '@/api'
+
+export default{
+  name: "pharmacy",
+  components: {
+    medicine,
+    datePicker: VuePersianDatetimePicker,
+  },
+  data() {
+    return{
+      textFieldBackgroundColor: '#ffffff',
+      newMedicineFormData: {
+          name: null,
+          dose: null,
+          type: null,
+          expireDate: null,
+      },
+      addMedicineFormData: {
+          name: null,
+          count: null,
+      },
+      medicineTypes: ['قرص', 'کپسول', 'آمپول', 'قطره', 'کرم', 'ژل'],
+      medicines: []
+    }
+  },
+  async created() {
+    await api.pharmacy.getAllMedicine()
+    .then(({data}) => {
+      this.medicines = data
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+  },
+  methods: {
+    async addMedicine() {
+      await api.pharmacy.addNewMedicine(this.newMedicineFormData)
+      .then(({data}) => {
+        this.medicines = data
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+
+      this.newMedicineFormData = {
+        name: null,
+        dose: null,
+        type: null,
+        expireDate: null,
       }
     },
-    methods: {
-      
+    async addAmount() {
+      await api.pharmacy.addMedicineAmount(this.addMedicineFormData)
+      .then(({data}) => {
+        this.medicines = data
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+
+      this.addMedicineFormData = {
+        name: null,
+        count: null,
+      }
     }
+  }
 }
   
   

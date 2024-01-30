@@ -2,8 +2,8 @@
   <div class="navbar-container">
     <div class="navbar-item">
       <a
-        v-if="userRole == 'patient'"
-        style="height: 20px; width: 80px; margin-left: 80px"
+        v-if="userRole == 'pharmacy'"
+        style="height: 20px; width: 80px; margin-left: 40px"
         @click="pharmacy"
         >داروخانه
       </a>
