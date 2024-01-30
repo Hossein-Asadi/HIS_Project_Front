@@ -101,7 +101,7 @@ select {
   border: 0;
   outline: 0;
   background: #99bbf5;
-  color: inherit;
+  color: white;
   box-shadow: none;
 }
 select::-ms-expand {
@@ -130,6 +130,7 @@ select::-ms-expand {
     transition: 0.25s all ease;
     pointer-events: none;
     direction: ltr;
+    color: white;
   }
 
   &:hover::after {
