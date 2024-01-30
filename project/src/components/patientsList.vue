@@ -7,6 +7,7 @@
       <div class="select">
         <select v-model="selectedOption">
           <option
+            class="options"
             v-for="(day, index) in days"
             :value="index"
             :selected="index === selectedOption"
@@ -112,8 +113,7 @@ select::-ms-expand {
   position: relative;
   display: flex;
   width: min(20rem, 90vw);
-  background: var(--background-select);
-  border-radius: 0.25rem;
+  border-radius: 5px;
   overflow: hidden;
 
   select {
@@ -145,5 +145,9 @@ select::-ms-expand {
   75% {
     transform: translatey(-5px);
   }
+}
+
+.options {
+  border-radius: 20px;
 }
 </style>

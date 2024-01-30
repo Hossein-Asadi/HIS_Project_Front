@@ -2,7 +2,7 @@
   <div class="navbar-container">
     <div class="navbar-item">
       <a
-        v-if="userRole == 'doctor'"
+        v-if="userRole == 'patient'"
         style="height: 20px; width: 80px; margin-left: 40px"
         @click="patientsList"
         >لیست بیماران
