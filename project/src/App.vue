@@ -1,21 +1,22 @@
 <template>
   <div id="app">
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
 <script>
-export default{
+export default {
   name: "app",
   data() {
-    return{
-      
-    }
-  }
-}
+    return {};
+  },
+};
 </script>
 
 <style lang="scss">
+body {
+  background-color: #e0e0e0;
+}
 @font-face {
   font-family: Shabnam;
   src: url("assets/fonts/Shabnam-FD.eot");

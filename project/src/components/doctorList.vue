@@ -1,16 +1,16 @@
 <template>
-  <div>
-    <v-data-table :headers="headers" :items="items" disable-sort disable-pagination hide-default-footer></v-data-table>
+  <div style="display: flex; justify-content: center; align-items: center;">
+    <v-data-table class="table-layout" :headers="headers" :items="items" disable-sort disable-pagination hide-default-footer></v-data-table>
   </div>
 </template>
 
 <script>
 import api from '@/api';
 
-export default{
+export default {
   name: 'doctorList',
   data() {
-    return{
+    return {
       experties: {
         'orthopedics': 'ارتوپدی',
         'digestion': 'گوارش',
@@ -57,4 +57,18 @@ export default{
 </script>
 
 <style>
+.table-layout{
+  width: 95%;
+  border: 2px solid gray;
+  border-radius: 5px;
+  background-color: white !important;
+}  
+
+.v-data-table > .v-data-table__wrapper > table > tbody > tr:nth-child(even){
+  background-color: #d9d9d9 !important;
+}
+.v-data-table > .v-data-table__wrapper > table > tbody > tr:hover{
+  background-color: #a6a6a6 !important;
+}
+
 </style>

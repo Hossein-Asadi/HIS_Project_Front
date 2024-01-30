@@ -67,6 +67,49 @@ export default{
         url: `${base_url}/api/calender/appointment/`,
         data: data
       })
+    },
+    getPatientList(doctorId) {
+      return axios({
+        method: 'get',
+        url: `${base_url}/api/calender/patientlist/`,
+        params: {id: doctorId}
+      })
     }
+  },
+  pharmacy: {
+    getAllMedicine() {
+      return axios({
+        method: 'get',
+        url: `${base_url}/api/pharmacy/`,
+      })
+    },
+    addNewMedicine(data) {
+      return axios({
+        method: 'post',
+        url: `${base_url}/api/pharmacy/medicine/`,
+        data: data
+      })
+    },
+    addMedicineAmount(data) {
+      return axios({
+        method: 'post',
+        url: `${base_url}/api/pharmacy/amount/`,
+        data: data
+      })
+    }
+  },
+  getUserInfo(userId) {
+    return axios({
+      method: 'get',
+      url: `${base_url}/api/userinfo/`,
+      params: {id: userId}
+    })
+  },
+  changeUserInfo(data) {
+    return axios({
+      method: 'post',
+      url: `${base_url}/api/userinfo/`,
+      data: data
+    })
   }
 }
