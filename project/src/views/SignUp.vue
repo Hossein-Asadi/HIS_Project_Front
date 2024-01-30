@@ -22,7 +22,7 @@
     />
     <v-icon
       size="40"
-      style="position: absolute; left: 115px; top: 105px"
+      style="position: absolute; left: 115px; top: 105px; color: white"
       @click="mainPage"
       >mdi-exit-to-app</v-icon
     >
